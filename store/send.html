@@ -1,0 +1,8 @@
+<!doctype html><meta charset="utf-8"><title>Cap990 assets</title>
+<script>
+// Hands the Cap990 store screenshots to the App Store Connect page that embeds this frame.
+const names = ['01-accueil.jpg','02-listening.jpg','03-reading.jpg','04-cours.jpg','05-vocabulaire.jpg','06-progres.jpg','review-premium.jpg'];
+Promise.all(names.map(n => fetch(n).then(r => r.blob()).then(b => ({name: n, blob: b}))))
+  .then(files => parent.postMessage({cap990: true, files}, 'https://appstoreconnect.apple.com'))
+  .catch(e => parent.postMessage({cap990: true, error: String(e)}, 'https://appstoreconnect.apple.com'));
+</script>
